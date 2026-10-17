@@ -1,0 +1,17 @@
+---
+import TemplateDialog from "../react/TemplateDialog";
+import { site } from "../../data/site";
+---
+
+<section class="cta" id="get-started">
+  <div class="cta__left reveal">
+    <p class="cta__line">画出你的<br />第一屏</p>
+    <p class="cta__sub">
+      首页的「模板」标签页提供八个入门文件，也可以从「文件 ▸ 从模板新建…」打开。
+      它们由原创的合成内容在代码中构建，所以脚本与智能体同样能打开它们。
+    </p>
+  </div>
+  <div class="cta__right reveal reveal--d2">
+    <TemplateDialog releases={site.releases} client:visible />
+  </div>
+</section>

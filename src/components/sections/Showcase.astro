@@ -1,0 +1,29 @@
+---
+import { showcase } from "../../data/site";
+---
+
+<section class="split" aria-label="一条命令进去，一屏设计出来">
+  <div class="split__in">
+    <div class="split__body reveal">
+      <pre class="split__code"><code>{showcase.command}</code></pre>
+      <p class="split__note">{showcase.note}</p>
+    </div>
+    <h2 class="split__head split__head--l">一条命令进去</h2>
+  </div>
+
+  <div class="split__out">
+    <div class="split__figure reveal reveal--d2">
+      <img
+        class="drift"
+        src={showcase.output.src}
+        width={showcase.output.w}
+        height={showcase.output.h}
+        alt={showcase.output.alt}
+        loading="lazy"
+        decoding="async"
+      />
+      <p class="split__cap">{showcase.output.caption}</p>
+    </div>
+    <h2 class="split__head split__head--r">一屏设计出来</h2>
+  </div>
+</section>

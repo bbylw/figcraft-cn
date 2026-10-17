@@ -1,0 +1,31 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/sections/Hero.astro";
+import Showcase from "../components/sections/Showcase.astro";
+import Look from "../components/sections/Look.astro";
+import Features from "../components/sections/Features.astro";
+import Agents from "../components/sections/Agents.astro";
+import HowItWorks from "../components/sections/HowItWorks.astro";
+import Proof from "../components/sections/Proof.astro";
+import Gallery from "../components/sections/Gallery.astro";
+import Privacy from "../components/sections/Privacy.astro";
+import Apps from "../components/sections/Apps.astro";
+import Cta from "../components/sections/Cta.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+---
+
+<Base title={`${site.name} · 开源、洁净室、纯 Rust 的界面设计工具`}>
+  <Hero />
+  <Showcase />
+  <Look />
+  <Features />
+  <Agents />
+  <HowItWorks />
+  <Proof />
+  <Gallery />
+  <Privacy />
+  <Apps />
+  <Cta />
+  <Footer />
+</Base>

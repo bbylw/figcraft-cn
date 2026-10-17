@@ -1,0 +1,29 @@
+---
+import { proofTiles, proofFacts } from "../../data/site";
+---
+
+<section class="section wrap" id="under-the-hood">
+  <div class="board">
+    <div class="tile tile--head reveal">
+      <h2>底层实现</h2>
+    </div>
+    {
+      proofTiles.map((t, i) => (
+        <div class={`tile reveal${i % 4 === 1 ? " reveal--d1" : i % 4 === 2 ? " reveal--d2" : i % 4 === 3 ? " reveal--d3" : ""}`}>
+          <div class="tile__name">{t.name}</div>
+          <div class="tile__note">{t.note}</div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="proof__facts">
+    {
+      proofFacts.map((f) => (
+        <p class="proof__fact reveal">
+          <b>{f.k}</b>　{f.v}
+        </p>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,49 @@
+---
+import LocalTime from "./react/LocalTime";
+import { footer, site } from "../data/site";
+---
+
+<footer style="padding-block: 8px;">
+  <div class="fboard">
+    <div class="ftile ftile--statement">
+      <p class="t-lead" style="font-weight: 300; max-width: 22ch;">{footer.statement}</p>
+      <p class="t-small t-muted" style="max-width: 40ch;">{footer.legal}</p>
+    </div>
+
+    <nav class="ftile ftile--nav" aria-label="页脚导航">
+      {footer.nav.map((n) => <a class="fnavel" href={n.href}>{n.label}</a>)}
+    </nav>
+
+    <div class="ftile ftile--time">
+      <span class="t-small t-muted">你所在的时区</span>
+      <LocalTime client:visible />
+    </div>
+
+    <div class="ftile ftile--mail">
+      <a class="fnavel" href={footer.mail.href} style="font-size: 20px;">
+        {footer.mail.label}
+      </a>
+    </div>
+
+    <div class="ftile ftile--word">
+      <span>FigCraft</span>
+    </div>
+
+    <a class="ftile ftile--invite" href={site.discord}>
+      <h3>{footer.invite}</h3>
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+        <path
+          d="M10 36 L36 10 M20 10 h16 v16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="4"
+          stroke-linecap="square"></path>
+      </svg>
+    </a>
+  </div>
+  <p class="t-small t-muted wrap" style="padding-block: 20px 28px;">
+    FigCraft 由 <a class="tlink" href={site.artcraft}>ArtCraft</a> 团队与社区打造 ·
+    <a class="tlink" href={site.repo}>GitHub</a> ·
+    <a class="tlink" href={site.figcraftApp}>官网</a>
+  </p>
+</footer>

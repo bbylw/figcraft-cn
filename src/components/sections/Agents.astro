@@ -1,0 +1,56 @@
+---
+import { site } from "../../data/site";
+
+const lines: { c?: boolean; t: string }[] = [
+  { c: true, t: "# 无界面：渲染与导出" },
+  { t: "figcraft-cli render landing.figcraft -o landing.png --scale 2" },
+  { t: "figcraft-cli export landing.figcraft -o out/ --format svg" },
+  { t: "" },
+  { c: true, t: "# 不带窗口地运行一段命令脚本" },
+  { t: "figcraft-cli run build-card.json --out card.figcraft" },
+  { t: "" },
+  { c: true, t: "# 列出每条命令及其参数" },
+  { t: "figcraft-cli commands --filter autoLayout" },
+  { t: "" },
+  { c: true, t: "# 让智能体通过 MCP 驱动它（无界面，或附加到正在运行的应用）" },
+  { t: "figcraft-cli mcp" },
+  { t: "figcraft-cli mcp --attach 47800" },
+];
+---
+
+<section class="section darkfield" id="agents">
+  <div class="wrap">
+    <div class="agents__grid">
+      <div class="agents__left reveal">
+        <h2 class="t-head">为智能体而打造</h2>
+        <p class="t-body" style="margin-top: 22px; max-width: 34ch;">
+          界面、命令行、JSON 控制通道与 MCP 服务器调用的是同一批命令。所以脚本和 AI 智能体能做到的，
+          和你用鼠标做到的，是同一件事。
+        </p>
+        <p class="t-body t-muted" style="margin-top: 26px;">
+          桌面应用还提供仅回环的控制通道
+          <code>figcraft --control &lt;port&gt;</code>，可检查界面状态、用指针与按键事件驱动工具，以及截图。
+        </p>
+        <div style="margin-top: 26px; display: flex; gap: 22px; flex-wrap: wrap;">
+          <a class="tlink" href={site.mcp}>MCP 文档</a>
+          <a class="tlink" href={`${site.repo}/blob/main/docs/cli.md`}>CLI 文档</a>
+          <a class="tlink" href={`${site.repo}/blob/main/docs/control-protocol.md`}>控制通道</a>
+        </div>
+      </div>
+
+      <div class="agents__right reveal reveal--d2">
+        <div data-ui class="term">
+          <div class="ui__bar">
+            <span><b>figcraft-cli</b> — zsh</span>
+            <span>400+ 条命令</span>
+          </div>
+          <pre class="codebox term__body"><code>{
+              lines.map((l) => (
+                <div class={l.c ? "c" : undefined}>{l.t === "" ? "\u00a0" : l.t}</div>
+              ))
+            }</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+---
+import { alsoApp, craftingApps, site } from "../../data/site";
+---
+
+<section class="section wrap" id="apps">
+  <div class="narrow">
+    <h2 class="t-head reveal">创作系列应用</h2>
+    <p class="t-body reveal reveal--d1" style="margin-top: 18px;">
+      来自 ArtCraft 团队的免费、开源创意工具，每一个都用 Rust 从零编写，且都能独当一面。
+    </p>
+
+    <div style="margin-top: clamp(40px, 5vw, 72px);" class="reveal reveal--d2">
+      <div class="grouplabel">创作系列应用</div>
+      {
+        craftingApps.map((a) => (
+          <a class="row2" href={a.href} style="text-decoration: none;">
+            <span class="row2__l">
+              <img src={a.icon} alt="" width="64" height="64" loading="lazy" />
+              {a.name}
+            </span>
+            <span class="row2__r">{a.right}</span>
+          </a>
+        ))
+      }
+
+      <div class="groupgap"></div>
+
+      <div class="grouplabel">以及</div>
+      <a class="row2" href={alsoApp.href} style="text-decoration: none;">
+        <span class="row2__l">
+          <img src={alsoApp.icon} alt="" width="64" height="64" loading="lazy" />
+          {alsoApp.name}
+        </span>
+        <span class="row2__r">{alsoApp.right}</span>
+      </a>
+
+      <p class="t-body t-muted" style="margin-top: 32px;">
+        创作系列应用遵循相同的约定：洁净室与纯 Rust、原生支持 macOS、Windows、Linux 与 FreeBSD、
+        通过 WebAssembly 在浏览器中运行，并且完全可由智能体驱动。
+        <a class="tlink" href={site.appsIndex}>看全部创作应用</a>
+      </p>
+    </div>
+  </div>
+</section>
