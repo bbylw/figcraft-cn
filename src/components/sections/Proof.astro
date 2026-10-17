@@ -6,6 +6,7 @@ import { proofTiles, proofFacts } from "../../data/site";
   <div class="board">
     <div class="tile tile--head reveal">
       <h2>底层实现</h2>
+      <p class="tile__head-sub">纯数据文档模型 · 零外部 Web 视图依赖</p>
     </div>
     {
       proofTiles.map((t, i) => (
@@ -19,10 +20,14 @@ import { proofTiles, proofFacts } from "../../data/site";
 
   <div class="proof__facts">
     {
-      proofFacts.map((f) => (
-        <p class="proof__fact reveal">
-          <b>{f.k}</b>　{f.v}
-        </p>
+      proofFacts.map((f, idx) => (
+        <div class="proof__fact reveal">
+          <div class="proof__fact-k">
+            <span class="proof__fact-num">{String(idx + 1).padStart(2, "0")}.</span>
+            <b>{f.k}</b>
+          </div>
+          <p class="proof__fact-v">{f.v}</p>
+        </div>
       ))
     }
   </div>

@@ -11,33 +11,37 @@ import { alsoApp, craftingApps, site } from "../../data/site";
 
     <div style="margin-top: clamp(40px, 5vw, 72px);" class="reveal reveal--d2">
       <div class="grouplabel">创作系列应用</div>
-      {
-        craftingApps.map((a) => (
-          <a class="row2" href={a.href} style="text-decoration: none;">
-            <span class="row2__l">
-              <img src={a.icon} alt="" width="64" height="64" loading="lazy" />
-              {a.name}
-            </span>
-            <span class="row2__r">{a.right}</span>
-          </a>
-        ))
-      }
+      <div class="rowlist">
+        {
+          craftingApps.map((a) => (
+            <a class="row2" href={a.href}>
+              <span class="row2__l">
+                <img src={a.icon} alt="" width="64" height="64" loading="lazy" referrerpolicy="no-referrer" />
+                <span class="row2__name">{a.name}</span>
+              </span>
+              <span class="row2__r">{a.right}</span>
+            </a>
+          ))
+        }
+      </div>
 
       <div class="groupgap"></div>
 
       <div class="grouplabel">以及</div>
-      <a class="row2" href={alsoApp.href} style="text-decoration: none;">
-        <span class="row2__l">
-          <img src={alsoApp.icon} alt="" width="64" height="64" loading="lazy" />
-          {alsoApp.name}
-        </span>
-        <span class="row2__r">{alsoApp.right}</span>
-      </a>
+      <div class="rowlist">
+        <a class="row2" href={alsoApp.href}>
+          <span class="row2__l">
+            <img src={alsoApp.icon} alt="" width="64" height="64" loading="lazy" referrerpolicy="no-referrer" />
+            <span class="row2__name">{alsoApp.name}</span>
+          </span>
+          <span class="row2__r">{alsoApp.right}</span>
+        </a>
+      </div>
 
-      <p class="t-body t-muted" style="margin-top: 32px;">
+      <p class="t-body t-muted" style="margin-top: 36px;">
         创作系列应用遵循相同的约定：洁净室与纯 Rust、原生支持 macOS、Windows、Linux 与 FreeBSD、
         通过 WebAssembly 在浏览器中运行，并且完全可由智能体驱动。
-        <a class="tlink" href={site.appsIndex}>看全部创作应用</a>
+        <a class="tlink" href={site.appsIndex}>看全部创作应用 ↗</a>
       </p>
     </div>
   </div>

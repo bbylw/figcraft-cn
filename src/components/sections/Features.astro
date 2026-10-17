@@ -3,29 +3,31 @@ import { featureCols, features, featureProse, site } from "../../data/site";
 ---
 
 <section class="section wrap" id="features">
-  <h2 class="t-head reveal">三种入口，同一条命令</h2>
-  <p class="t-body reveal reveal--d1" style="max-width: 52ch; margin-top: 20px;">
-    每一个菜单项、工具与手势都来自一个拥有 400+ 条命令的注册表。你在界面上点到的任何效果，
-    <a class="tlink" href={site.mcp}>命令行与 MCP 服务器</a> 同样能做到。
-  </p>
+  <div class="sec-head">
+    <h2 class="t-head reveal">三种入口，同一条命令</h2>
+    <p class="t-body reveal reveal--d1 sec-head__lead">
+      每一个菜单项、工具与手势都来自一个拥有 400+ 条命令的注册表。你在界面上点到的任何效果，
+      <a class="tlink" href={site.mcp}>命令行与 MCP 服务器</a> 同样能做到。
+    </p>
+  </div>
 
-  <div class="table reveal reveal--d2" style="margin-top: clamp(48px, 6vw, 88px);">
-    <div class="table__cell table__head">能力</div>
-    <div class="table__cell table__head">{featureCols[0]}</div>
-    <div class="table__cell table__head">{featureCols[1]}</div>
-    <div class="table__cell table__head table__cell--feathead">{featureCols[2]}</div>
+  <div class="table reveal reveal--d2" role="table" aria-label="三种入口对比表" style="margin-top: clamp(48px, 6vw, 88px);">
+    <div class="table__cell table__head" role="columnheader">能力</div>
+    <div class="table__cell table__head" role="columnheader">{featureCols[0]}</div>
+    <div class="table__cell table__head" role="columnheader">{featureCols[1]}</div>
+    <div class="table__cell table__head table__cell--feathead" role="columnheader">{featureCols[2]}</div>
 
     {
       features.map((row, i) => (
         <>
-          <div class={`table__cell table__cap${i % 2 === 0 ? " table__cell--alt" : ""}`}>
+          <div class={`table__cell table__cap${i % 2 === 0 ? " table__cell--alt" : ""}`} role="cell">
             {row.name}
           </div>
-          <div class={`table__cell${i % 2 === 0 ? " table__cell--alt" : ""}`}>{row.ui}</div>
-          <div class={`table__cell${i % 2 === 0 ? " table__cell--alt" : ""}`}>
+          <div class={`table__cell${i % 2 === 0 ? " table__cell--alt" : ""}`} role="cell">{row.ui}</div>
+          <div class={`table__cell${i % 2 === 0 ? " table__cell--alt" : ""}`} role="cell">
             <Fragment set:html={row.cli} />
           </div>
-          <div class={`table__cell table__cell--feat${i % 2 === 0 ? " table__cell--alt" : ""}`}>
+          <div class={`table__cell table__cell--feat${i % 2 === 0 ? " table__cell--alt" : ""}`} role="cell">
             <Fragment set:html={row.mcp} />
           </div>
         </>
@@ -59,10 +61,11 @@ import { featureCols, features, featureProse, site } from "../../data/site";
     }
   </div>
 
-  <div class="featgrid" style="margin-top: clamp(56px, 7vw, 104px);">
+  <div class="featgrid" style="margin-top: clamp(64px, 7vw, 112px);">
     {
       featureProse.map((f, i) => (
-        <div class={`reveal${i % 2 === 1 ? " reveal--d1" : ""}`}>
+        <div class={`featgrid__item reveal${i % 2 === 1 ? " reveal--d1" : ""}`}>
+          <span class="featgrid__num">{String(i + 1).padStart(2, "0")}.</span>
           <h3>{f.h}</h3>
           <p>{f.p}</p>
         </div>

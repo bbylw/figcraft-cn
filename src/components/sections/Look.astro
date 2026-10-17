@@ -3,32 +3,39 @@ import { look } from "../../data/site";
 ---
 
 <section class="section wrap" id="look">
-  <h2 class="t-head reveal">编辑器一览</h2>
-  <p class="t-body reveal reveal--d1" style="max-width: 46ch; margin-top: 20px;">
-    下面每一张都是 FigCraft 自己的界面，不是在浏览器里套壳：没有 Electron，没有 Web 视图。
-  </p>
+  <div class="sec-head">
+    <h2 class="t-head reveal">编辑器一览</h2>
+    <p class="t-body reveal reveal--d1 sec-head__lead">
+      下面每一张都是 FigCraft 自己的界面，不是在浏览器里套壳：没有 Electron，没有 Web 视图。
+    </p>
+  </div>
 
-  <div style="margin-top: clamp(48px, 6vw, 96px);">
+  <div class="look__list">
     {
       look.map((item, i) => (
         <article class={`look__item${i % 2 === 1 ? " look__item--flip" : ""}`}>
           <div class="look__media reveal">
-            <img
-              class="parallax"
-              src={item.src}
-              width={item.w}
-              height={item.h}
-              alt={item.alt}
-              loading="lazy"
-              decoding="async"
-            />
+            <div class="look__frame">
+              <img
+                class="parallax"
+                src={item.src}
+                width={item.w}
+                height={item.h}
+                alt={item.alt}
+                loading="lazy"
+                decoding="async"
+                referrerpolicy="no-referrer"
+              />
+            </div>
           </div>
           <div class="look__text reveal reveal--d1">
+            <span class="look__index">{String(i + 1).padStart(2, "0")}.</span>
             <h3 class="look__title">{item.title}</h3>
             <p class="look__desc">{item.desc}</p>
             {item.file && (
               <p class="look__file">
-                示例文件 <code>{item.file}</code>
+                <span>示例文件</span>
+                <code>{item.file}</code>
               </p>
             )}
           </div>

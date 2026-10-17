@@ -6,19 +6,35 @@ import { hero, nav, site } from "../../data/site";
 <header class="hero">
   <div class="hero__left">
     <div class="hero__markrow rise rise--d1">
-      <img class="hero__mark" src="/img/brand/artcraft-mark.png" alt="ArtCraft" width="1024" height="1024" />
-      <span class="hero__wordmark">FigCraft</span>
+      <a href="/" class="hero__brandlink" aria-label="FigCraft 首页">
+        <img
+          class="hero__mark"
+          src="/img/brand/artcraft-mark.png"
+          alt="ArtCraft"
+          width="1024"
+          height="1024"
+          referrerpolicy="no-referrer"
+        />
+        <span class="hero__wordmark">FigCraft</span>
+      </a>
     </div>
 
     <div class="hero__foot">
+      <p class="hero__kicker rise rise--d1">纯 Rust · 离线优先 · 400+ 命令注册表 · MIT / Apache-2.0</p>
       <h1 class="hero__headline" data-hero-headline>
         <span class="maskline"><span>{hero.line1}</span></span>
         <span class="maskline"><span>{hero.line2}</span></span>
       </h1>
       <p class="hero__sub rise rise--d1">{hero.sub}</p>
       <div class="hero__actions rise rise--d2">
-        <a class="btn" href={hero.primary.href}>{hero.primary.label}</a>
-        <a class="tlink" href={site.repo}>{hero.secondary.label}</a>
+        <a class="btn" href={hero.primary.href}>
+          <span>{hero.primary.label}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a class="tlink hero__seclink" href={site.repo}>
+          <span>{hero.secondary.label}</span>
+          <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </div>
   </div>

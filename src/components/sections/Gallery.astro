@@ -3,26 +3,31 @@ import { prints } from "../../data/site";
 ---
 
 <section class="section wrap" id="made-in-figcraft">
-  <h2 class="t-head reveal">由 FigCraft 制作</h2>
-  <p class="t-body reveal reveal--d1" style="max-width: 52ch; margin-top: 20px;">
-    下面每一份设计都完全通过 FigCraft 的命令 API 构建——也就是 MCP 服务器暴露给智能体的同一套 API——
-    并由 FigCraft 自带的渲染器以 2 倍分辨率导出。
-  </p>
+  <div class="sec-head">
+    <h2 class="t-head reveal">由 FigCraft 制作</h2>
+    <p class="t-body reveal reveal--d1 sec-head__lead">
+      下面每一份设计都完全通过 FigCraft 的命令 API 构建——也就是 MCP 服务器暴露给智能体的同一套 API——
+      并由 FigCraft 自带的渲染器以 2 倍分辨率导出。
+    </p>
+  </div>
 
   <div class="gallery" style="margin-top: clamp(48px, 6vw, 88px);">
     {
-      prints.map((p, i) => (
+      prints.map((p) => (
         <figure class="print reveal" style="margin: 0;">
-          <img
-            class="print__img"
-            src={p.src}
-            width={p.w}
-            height={p.h}
-            alt={p.alt}
-            style={`object-position: ${p.pos};`}
-            loading="lazy"
-            decoding="async"
-          />
+          <div class="print__imgwrap">
+            <img
+              class="print__img"
+              src={p.src}
+              width={p.w}
+              height={p.h}
+              alt={p.alt}
+              style={`object-position: ${p.pos};`}
+              loading="lazy"
+              decoding="async"
+              referrerpolicy="no-referrer"
+            />
+          </div>
           <figcaption class={`strip strip--${p.strip}`}>
             <div class="strip__row">
               {p.values.map((v) => (
@@ -33,7 +38,7 @@ import { prints } from "../../data/site";
               <span>{p.meta[0]}</span>
               <span>{p.meta[1]}</span>
             </div>
-            <div class="strip__row">{p.maker}</div>
+            <div class="strip__row strip__row--maker">{p.maker}</div>
           </figcaption>
         </figure>
       ))

@@ -16,6 +16,11 @@ const lines: { c?: boolean; t: string }[] = [
   { t: "figcraft-cli mcp" },
   { t: "figcraft-cli mcp --attach 47800" },
 ];
+
+const copyableScript = lines
+  .filter((l) => !l.c && l.t.trim().length > 0)
+  .map((l) => l.t)
+  .join("\n");
 ---
 
 <section class="section darkfield" id="agents">
@@ -23,30 +28,42 @@ const lines: { c?: boolean; t: string }[] = [
     <div class="agents__grid">
       <div class="agents__left reveal">
         <h2 class="t-head">为智能体而打造</h2>
-        <p class="t-body" style="margin-top: 22px; max-width: 34ch;">
+        <p class="t-body" style="margin-top: 22px; max-width: 36ch;">
           界面、命令行、JSON 控制通道与 MCP 服务器调用的是同一批命令。所以脚本和 AI 智能体能做到的，
           和你用鼠标做到的，是同一件事。
         </p>
-        <p class="t-body t-muted" style="margin-top: 26px;">
+        <p class="t-body t-muted" style="margin-top: 22px; max-width: 36ch;">
           桌面应用还提供仅回环的控制通道
           <code>figcraft --control &lt;port&gt;</code>，可检查界面状态、用指针与按键事件驱动工具，以及截图。
         </p>
-        <div style="margin-top: 26px; display: flex; gap: 22px; flex-wrap: wrap;">
-          <a class="tlink" href={site.mcp}>MCP 文档</a>
-          <a class="tlink" href={`${site.repo}/blob/main/docs/cli.md`}>CLI 文档</a>
-          <a class="tlink" href={`${site.repo}/blob/main/docs/control-protocol.md`}>控制通道</a>
+        <div class="agents__links">
+          <a class="tlink" href={site.mcp}>MCP 文档 ↗</a>
+          <a class="tlink" href={`${site.repo}/blob/main/docs/cli.md`}>CLI 文档 ↗</a>
+          <a class="tlink" href={`${site.repo}/blob/main/docs/control-protocol.md`}>控制通道 ↗</a>
         </div>
       </div>
 
       <div class="agents__right reveal reveal--d2">
         <div data-ui class="term">
           <div class="ui__bar">
-            <span><b>figcraft-cli</b> — zsh</span>
-            <span>400+ 条命令</span>
+            <span><b>figcraft-cli</b> · zsh</span>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span>400+ 条命令</span>
+              <button
+                type="button"
+                class="term__copy"
+                data-copy-cli={copyableScript}
+                aria-label="复制全部命令行示例"
+              >
+                复制命令
+              </button>
+            </div>
           </div>
           <pre class="codebox term__body"><code>{
               lines.map((l) => (
-                <div class={l.c ? "c" : undefined}>{l.t === "" ? "\u00a0" : l.t}</div>
+                <div class={l.c ? "c" : l.t ? "term__cmd" : undefined}>
+                  {l.t === "" ? "\u00a0" : l.t}
+                </div>
               ))
             }</code></pre>
         </div>
@@ -54,3 +71,22 @@ const lines: { c?: boolean; t: string }[] = [
     </div>
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    var btn = document.querySelector("[data-copy-cli]");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var text = btn.getAttribute("data-copy-cli") || "";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          var prev = btn.textContent;
+          btn.textContent = "已复制";
+          setTimeout(function () {
+            btn.textContent = prev;
+          }, 1500);
+        });
+      }
+    });
+  })();
+</script>

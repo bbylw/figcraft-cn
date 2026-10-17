@@ -1,29 +1,128 @@
 ---
 import { showcase } from "../../data/site";
+
+const presets = [
+  {
+    id: "dashboard",
+    label: "dashboard",
+    cmd: `file.newFromTemplate {\n  "template": "dashboard",\n  "grid": "12-col",\n  "theme": "light"\n}`,
+    src: "/img/art-dashboard.png",
+    w: 2880,
+    h: 1920,
+    alt: showcase.output.alt,
+    caption: showcase.output.caption,
+  },
+  {
+    id: "mobile-app",
+    label: "mobile-app",
+    cmd: `file.newFromTemplate {\n  "template": "mobile-app",\n  "mode": "Dark",\n  "scale": 2\n}`,
+    src: "/img/art-app-home-dark.png",
+    w: 786,
+    h: 1704,
+    alt: "同一 Ridgeline 首页的深色模式，其颜色由主题变量集合的 Dark 模式切换",
+    caption: "Ridgeline 移动应用：390 × 844 画框，通过切换变量集合模式即可实时输出深色界面。",
+  },
+  {
+    id: "design-system",
+    label: "design-system",
+    cmd: `file.newFromTemplate {\n  "template": "design-system",\n  "tokens": ["pine", "sunset", "slate"]\n}`,
+    src: "/img/art-ds-colour.png",
+    w: 2784,
+    h: 1098,
+    alt: "Ridgeline UI 色阶：松绿、日落橙与石板灰各六个色板，每个都标有名称与十六进制值",
+    caption: "Ridgeline UI 设计系统：松绿、日落橙与石板灰三套六级色阶，自动生成本地填充样式。",
+  },
+];
 ---
 
-<section class="split" aria-label="一条命令进去，一屏设计出来">
+<section class="split" aria-label="一条命令进去，一屏设计出来" data-showcase>
   <div class="split__in">
+    <div class="split__top">
+      <span class="split__tag">MCP / JSON 控制流</span>
+      <div class="split__switcher" role="tablist" aria-label="切换示例模板命令">
+        {
+          presets.map((p, idx) => (
+            <button
+              type="button"
+              role="tab"
+              class={`split__tab${idx === 0 ? " is-on" : ""}`}
+              aria-selected={idx === 0 ? "true" : "false"}
+              data-preset-btn={idx}
+            >
+              {p.label}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
     <div class="split__body reveal">
-      <pre class="split__code"><code>{showcase.command}</code></pre>
+      {
+        presets.map((p, idx) => (
+          <pre
+            class={`split__code${idx === 0 ? " is-on" : ""}`}
+            data-preset-code={idx}
+          ><code>{p.cmd}</code></pre>
+        ))
+      }
       <p class="split__note">{showcase.note}</p>
     </div>
-    <h2 class="split__head split__head--l">一条命令进去</h2>
+
+    <h2 class="split__head split__head--l">{showcase.headLeft}</h2>
   </div>
 
   <div class="split__out">
-    <div class="split__figure reveal reveal--d2">
-      <img
-        class="drift"
-        src={showcase.output.src}
-        width={showcase.output.w}
-        height={showcase.output.h}
-        alt={showcase.output.alt}
-        loading="lazy"
-        decoding="async"
-      />
-      <p class="split__cap">{showcase.output.caption}</p>
+    <div class="split__top split__top--out">
+      <span class="split__tag split__tag--light">tiny-skia 2× 原生渲染输出</span>
     </div>
-    <h2 class="split__head split__head--r">一屏设计出来</h2>
+
+    <div class="split__figure reveal reveal--d2">
+      {
+        presets.map((p, idx) => (
+          <div class={`split__art${idx === 0 ? " is-on" : ""}`} data-preset-art={idx}>
+            <div class="split__imgframe">
+              <img
+                class="drift"
+                src={p.src}
+                width={p.w}
+                height={p.h}
+                alt={p.alt}
+                loading="lazy"
+                decoding="async"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <p class="split__cap">{p.caption}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="split__head split__head--r">{showcase.headRight}</h2>
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    var root = document.querySelector("[data-showcase]");
+    if (!root) return;
+    var btns = root.querySelectorAll("[data-preset-btn]");
+    var codes = root.querySelectorAll("[data-preset-code]");
+    var arts = root.querySelectorAll("[data-preset-art]");
+    btns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var target = Number(btn.getAttribute("data-preset-btn"));
+        btns.forEach(function (b, i) {
+          b.classList.toggle("is-on", i === target);
+          b.setAttribute("aria-selected", i === target ? "true" : "false");
+        });
+        codes.forEach(function (c, i) {
+          c.classList.toggle("is-on", i === target);
+        });
+        arts.forEach(function (a, i) {
+          a.classList.toggle("is-on", i === target);
+        });
+      });
+    });
+  })();
+</script>

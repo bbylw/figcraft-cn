@@ -1,0 +1,5 @@
+{
+  "name": "FigCraft · 开源、纯 Rust 的界面设计工具",
+  "description": "FigCraft 是一个开源、洁净室、纯 Rust 重写的界面设计工具：画框、自动布局、组件与变体、矢量网络、样式、变量与原型，全部运行于秒开的原生应用，可离线使用。",
+  "requestFramePermissions": []
+}

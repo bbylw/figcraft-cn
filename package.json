@@ -3,13 +3,13 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.22.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host 0.0.0.0 --port 3000",
     "build": "astro build",
-    "preview": "astro preview",
-    "preview:portless": "portless --name figcraft bunx serve dist -L",
+    "preview": "astro preview --host 0.0.0.0 --port 3000",
+    "preview:portless": "portless --name figcraft npx serve dist -L",
     "gate": "node C:/Users/bbylw/.workbuddy/skills/frontend-studio/scripts/inspect.mjs https://figcraft.localhost --out .frontend-studio/inspect",
     "gate:lint": "node C:/Users/bbylw/.workbuddy/skills/frontend-studio/scripts/lint.mjs src",
     "astro": "astro"
@@ -26,7 +26,6 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "puppeteer-core": "^25.14.0",
     "typescript": "^6.0.3"
   }
 }
