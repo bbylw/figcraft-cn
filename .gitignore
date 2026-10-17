@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 # workbuddy project memory
 .workbuddy/
+
+# Google AI Studio workspace artifacts
+.aistudio/
