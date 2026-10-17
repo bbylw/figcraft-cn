@@ -6,7 +6,7 @@ import { look } from "../../data/site";
   <div class="sec-head">
     <h2 class="t-head reveal">编辑器一览</h2>
     <p class="t-body reveal reveal--d1 sec-head__lead">
-      下面每一张都是 FigCraft 自己的界面，不是在浏览器里套壳：没有 Electron，没有 Web 视图。
+      下面每一张都是 FigCraft 自己的界面，不是在浏览器里套壳：没有 Electron，没有 Web 视图。点击任一截图可放大检视界面细节。
     </p>
   </div>
 
@@ -15,7 +15,16 @@ import { look } from "../../data/site";
       look.map((item, i) => (
         <article class={`look__item${i % 2 === 1 ? " look__item--flip" : ""}`}>
           <div class="look__media reveal">
-            <div class="look__frame">
+            <div
+              class="look__frame"
+              role="button"
+              tabindex="0"
+              aria-label={`放大检视：${item.title}`}
+              data-zoom-src={item.src}
+              data-zoom-title={item.title}
+              data-zoom-caption={item.desc}
+              data-zoom-file={item.file ?? ""}
+            >
               <img
                 class="parallax"
                 src={item.src}
@@ -26,6 +35,7 @@ import { look } from "../../data/site";
                 decoding="async"
                 referrerpolicy="no-referrer"
               />
+              <span class="look__zoomhint" aria-hidden="true">点击放大检视 ↗</span>
             </div>
           </div>
           <div class="look__text reveal reveal--d1">

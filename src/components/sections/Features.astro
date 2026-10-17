@@ -12,25 +12,28 @@ import { featureCols, features, featureProse, site } from "../../data/site";
   </div>
 
   <div class="table reveal reveal--d2" role="table" aria-label="三种入口对比表" style="margin-top: clamp(48px, 6vw, 88px);">
-    <div class="table__cell table__head" role="columnheader">能力</div>
-    <div class="table__cell table__head" role="columnheader">{featureCols[0]}</div>
-    <div class="table__cell table__head" role="columnheader">{featureCols[1]}</div>
-    <div class="table__cell table__head table__cell--feathead" role="columnheader">{featureCols[2]}</div>
+    <div class="table__row table__row--head" role="row">
+      <div class="table__cell table__head" role="columnheader">能力</div>
+      <div class="table__cell table__head" role="columnheader">{featureCols[0]}</div>
+      <div class="table__cell table__head" role="columnheader">{featureCols[1]}</div>
+      <div class="table__cell table__head table__cell--feathead" role="columnheader">{featureCols[2]}</div>
+    </div>
 
     {
       features.map((row, i) => (
-        <>
-          <div class={`table__cell table__cap${i % 2 === 0 ? " table__cell--alt" : ""}`} role="cell">
-            {row.name}
+        <div class={`table__row${i % 2 === 0 ? " table__row--alt" : ""}`} role="row">
+          <div class="table__cell table__cap" role="cell">
+            <span class="table__idx">{String(i + 1).padStart(2, "0")}</span>
+            <span>{row.name}</span>
           </div>
-          <div class={`table__cell${i % 2 === 0 ? " table__cell--alt" : ""}`} role="cell">{row.ui}</div>
-          <div class={`table__cell${i % 2 === 0 ? " table__cell--alt" : ""}`} role="cell">
+          <div class="table__cell" role="cell">{row.ui}</div>
+          <div class="table__cell" role="cell">
             <Fragment set:html={row.cli} />
           </div>
-          <div class={`table__cell table__cell--feat${i % 2 === 0 ? " table__cell--alt" : ""}`} role="cell">
+          <div class="table__cell table__cell--feat" role="cell">
             <Fragment set:html={row.mcp} />
           </div>
-        </>
+        </div>
       ))
     }
   </div>
@@ -61,14 +64,17 @@ import { featureCols, features, featureProse, site } from "../../data/site";
     }
   </div>
 
-  <div class="featgrid" style="margin-top: clamp(64px, 7vw, 112px);">
+  <div class="featgrid" style="margin-top: clamp(72px, 8vw, 124px);">
     {
       featureProse.map((f, i) => (
-        <div class={`featgrid__item reveal${i % 2 === 1 ? " reveal--d1" : ""}`}>
-          <span class="featgrid__num">{String(i + 1).padStart(2, "0")}.</span>
-          <h3>{f.h}</h3>
-          <p>{f.p}</p>
-        </div>
+        <article class={`featgrid__item reveal${i % 2 === 1 ? " reveal--d1" : ""}`}>
+          <div class="featgrid__top">
+            <span class="featgrid__num">{String(i + 1).padStart(2, "0")}.</span>
+            <h3>{f.h}</h3>
+          </div>
+          <p class="featgrid__lead">{f.lead}</p>
+          <p class="featgrid__body">{f.body}</p>
+        </article>
       ))
     }
   </div>

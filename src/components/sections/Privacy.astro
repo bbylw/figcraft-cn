@@ -2,20 +2,24 @@
 import { privacy } from "../../data/site";
 ---
 
-<section class="section darkfield">
+<section class="section darkfield" id="privacy">
   <div class="wrap">
-    <h2 class="t-head reveal">分享之前，先知道这些</h2>
-    <p class="t-body t-muted reveal reveal--d1" style="max-width: 54ch; margin-top: 20px;">
-      FigCraft 可以离线工作：没有账号，没有遥测，在你分享或加入文件之前不会连接任何服务器。
-      实时协作会话属于预览功能。
-    </p>
+    <div class="sec-head">
+      <h2 class="t-head reveal">分享之前，先知道这些</h2>
+      <p class="t-body t-muted reveal reveal--d1 sec-head__lead">
+        FigCraft 可以离线工作：没有账号，没有遥测，在你分享或加入文件之前不会连接任何服务器。
+        实时协作会话属于预览功能。
+      </p>
+    </div>
     <div class="privacy">
       {
         privacy.map((p, i) => (
-          <div class={`reveal${i === 1 ? " reveal--d1" : i === 2 ? " reveal--d2" : ""}`}>
+          <article class={`privacy__item reveal${i === 1 ? " reveal--d1" : i === 2 ? " reveal--d2" : ""}`}>
+            <span class="privacy__num">{String(i + 1).padStart(2, "0")}.</span>
             <h3>{p.h}</h3>
-            <p>{p.p}</p>
-          </div>
+            <p class="privacy__lead">{p.lead}</p>
+            <p class="privacy__body">{p.body}</p>
+          </article>
         ))
       }
     </div>

@@ -7,14 +7,24 @@ import { prints } from "../../data/site";
     <h2 class="t-head reveal">由 FigCraft 制作</h2>
     <p class="t-body reveal reveal--d1 sec-head__lead">
       下面每一份设计都完全通过 FigCraft 的命令 API 构建——也就是 MCP 服务器暴露给智能体的同一套 API——
-      并由 FigCraft 自带的渲染器以 2 倍分辨率导出。
+      并由 FigCraft 自带的渲染器以 2 倍分辨率导出。点击任意作品可放大检视原图。
     </p>
   </div>
 
   <div class="gallery" style="margin-top: clamp(48px, 6vw, 88px);">
     {
       prints.map((p) => (
-        <figure class="print reveal" style="margin: 0;">
+        <figure
+          class="print reveal"
+          style="margin: 0;"
+          role="button"
+          tabindex="0"
+          aria-label={`放大检视作品：${p.maker}`}
+          data-zoom-src={p.src}
+          data-zoom-title={p.maker}
+          data-zoom-caption={p.alt}
+          data-zoom-file={`${p.meta[0]} · ${p.values.join(" · ")}`}
+        >
           <div class="print__imgwrap">
             <img
               class="print__img"
